@@ -4,11 +4,12 @@ const connectDB = require("./config/db");
 const app = express();
 const errorHandler = require("./middleware/error");
 
-// Route files
-const bootcamps = require("./routes/bootcamp");
-
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
+
+// Route files
+const bootcamps = require("./routes/bootcamp");
+const courses = require("./routes/courses");
 
 app.use(express.json());
 // Connect DB
@@ -16,6 +17,7 @@ connectDB();
 
 // Routes
 app.use("/api/v1/bootcamps", bootcamps);
+app.use("/api/v1/courses", courses);
 
 app.use(errorHandler);
 
